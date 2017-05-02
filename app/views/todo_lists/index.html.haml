@@ -3,24 +3,25 @@
   %h3{class: 'sub-header'} 新しいTodoを作成
   = render 'form'
 .col-lg-8.col-offset-4
-  %h4{class: 'sub-header'}
-  %table{class: "table table-hover"}
-    %thead{class: "thead-inverse"}
-      %tr
-        %th　タイトル
-        %th 詳細
-    %tbody
-      - @todos.each do |todo|
-        %tr{scope:"row"}
-          %td
-            = todo.title
-          %td
-            = truncate(todo.description, lenght: 10)
-          %td
-            .btn-group{role: "group"}
-              = link_to todo_list_path(todo), class: "btn btn-default" do
-                .glyphicon.glyphicon-info-sign 詳しい
-              = link_to edit_todo_list_path(todo), class: "btn btn-default" do
-                .glyphicon.glyphicon-edit 編集
-              = link_to todo_list_path(todo), method: :delete, class: "btn btn-danger", data: {confirm: "#{todo.title} を削除してもよろしでしょうか？"} do
-                .glyphicon.glyphicon-remove 削除
+  -if @todos.any?
+    %h4{class: 'sub-header'}
+    %table{class: "table table-hover"}
+      %thead{class: "thead-inverse"}
+        %tr
+          %th　タイトル
+          %th 詳細
+      %tbody
+        - @todos.each do |todo|
+          %tr{scope:"row"}
+            %td
+              = todo.title
+            %td
+              = truncate(todo.description, lenght: 10)
+            %td
+              .btn-group{role: "group"}
+                = link_to edit_todo_list_path(todo), class: "btn btn-default" do
+                  .glyphicon.glyphicon-info-sign 詳細
+                = link_to todo_list_path(todo), method: :delete, class: "btn btn-danger", data: {confirm: "#{todo.title} を削除してもよろしでしょうか？"} do
+                  .glyphicon.glyphicon-remove 削除
+  -else
+    %h4 この人何も残していない！
