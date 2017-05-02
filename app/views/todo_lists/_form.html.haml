@@ -1,0 +1,8 @@
+= simple_form_for @todo do |f|
+  .form-group
+    = f.label 'タイトル'
+    = f.text_field :title, error: 'タイトルを入力しください', placeholder: '牛乳を購入', class: 'form-control', required: true
+    = f.label '詳細'
+    = f.text_area :description, error: '詳細を入力しください', placeholder: 'イオンで明治おいしい牛乳4本', class: 'form-control', required: true
+  .form-group
+    = f.button :submit, '登録', class: 'btn btn-block btn-primary'
